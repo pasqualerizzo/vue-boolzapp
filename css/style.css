@@ -15,6 +15,8 @@
     margin-left: -600px;
     display: flex;
     z-index: 999;
+    -webkit-box-shadow: -1px 9px 15px -2px rgba(0,0,0,0.77); 
+    box-shadow: -1px 9px 15px -2px rgba(0,0,0,0.77);
 }
 
 body {
@@ -136,7 +138,11 @@ aside {
     cursor: pointer;
 }
 
-.active {
+.card-profile:hover {
+    background-color: #e9ebeb;
+}
+
+.card-profile.active {
     background-color: #e9ebeb;
 }
 
@@ -199,6 +205,7 @@ section {
 .cta-chat-btn i {
     margin-left: 10px;
     color: #b1b1b1;
+    cursor: pointer;
 }
 
 .chat-message {
@@ -211,6 +218,7 @@ section {
 }
 
 .msg-base {
+    margin-bottom: 5px;
 }
 
 .msg-base p {
@@ -270,62 +278,3 @@ section {
     font-size: 1.2rem;
     cursor: pointer;
 }
-
-
-
-
-
-
-
-
-
-
-/* Debug */
-
-
-
-
-
-
-
-
-
-/* MEDIAQUERY FOR RESPONIVE */
-
-/* Desktop-First */
-
-/* DESKTOP */
-/* @media screen and (max-width: 992px) {
-    
-} */
-
-/* TABLET */
-/* @media screen and (max-width: 768px) {
-    
-} */
-
-/* MOBILE PICCOLO */
-/* @media screen and (max-width: 576px) {
-
-} */
-
-
-
-/* Mobile-First */
-
-/* MOBILE PICCOLO */
-/* @media screen and (min-width: 576px) {
-
-} */
-
-/* TABLET */
-/* @media screen and (min-width: 768px) {
-    
-} */
-
-/* DESKTOP */
-/* @media screen and (min-width: 992px) {
-    
-} */
-
-

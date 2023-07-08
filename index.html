@@ -55,17 +55,21 @@
                     </div>
                     <div class="search-chat">
                         <form>
+                            <!-- Milestone 4 -->
                             <label for="my-input"><i class="fa-solid fa-magnifying-glass"></i></label>
-                            <input type="text" id="my-input" name="my-input" placeholder="Cerca o inizia una nuova chat">
+                            <input v-model="searchQuery" type="text" @input="filterContacts" placeholder="Cerca o inizia una nuova chat">
+                            <!-- Fine Milestone 4 -->
                         </form>
                     </div>
-                    <div class="card-profile active" v-for="contact in contacts" :key="contact.name">
+                    <!-- Milestone 1 -->
+                    <div v-for="contact in filteredContacts" :key="contact.name" class="card-profile" :class="{ active: contact === activeContact }" @click="setActiveContact(contact)">
                         <img :src="contact.avatar" alt="">
                         <div class="info-contact">
-                            <p>{{ contact.name }}</p>
-                            <p>Ultimo messaggio inviato</p>
+                          <p>{{ contact.name }}</p>
+                          <p>{{ getLastMessage(contact) }}</p>
                         </div>
                     </div>
+                    <!-- Fine Milestone 1 -->
                 </aside>
                 <section>
                     <div class="chat-head">
@@ -83,24 +87,25 @@
                         </div>
                     </div>
                     <div class="chat-message">
-                        <div class="msg-base sent">
-                            <p>Messaggio inviato</p>
+                        <!-- Milestone 2 -->
+                        <div v-for="message in activeContact.messages" :key="message.date" class="msg-base" :class="[message.status === 'sent' ? 'sent' : 'received']">
+                          <p>{{ message.message }}</p>
                         </div>
-                        <div class="msg-base received">
-                            <p>Messaggio Ricevuto</p>
-                        </div>
+                        <!-- Fine Milestone 2 -->
                     </div>
                     <div class="type-message">
                         <div class="emoji">
-                            <i class="fa-regular fa-face-smile"></i>
+                          <i class="fa-regular fa-face-smile"></i>
                         </div>
                         <div class="tiping-message">
-                            <form action="">
-                                <input type="text" id="message-input" name="message-input" placeholder="   Scrivi un messaggio">
-                            </form>
+                        <!-- Milestone 3 -->
+                          <form @submit.prevent="sendMessage">
+                            <input v-model="newMessage" type="text" id="message-input" name="message-input" placeholder="   Scrivi un messaggio" />
+                          </form>
+                        <!-- Fine Milestone 3 -->
                         </div>
                         <div class="vocal-message">
-                            <i class="fa-solid fa-microphone"></i>
+                          <i class="fa-solid fa-microphone"></i>
                         </div>
                     </div>
                 </section>
@@ -113,8 +118,7 @@
 
     </footer>
 
-
-
     <script type="text/javascript" src="js/main.js"></script>
+
 </body>
 </html>

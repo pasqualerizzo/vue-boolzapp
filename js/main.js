@@ -163,9 +163,65 @@ const app = Vue.createApp({
             }
           ]
         }
-      ]
+      ],
+      activeContact: null,
+      searchQuery: "",
+      filteredContacts: []
     };
+  },
+  created() {
+    // Imposta il primo contatto come attivo all'avvio dell'applicazione e mostra la conversazione
+    if (this.contacts.length > 0) {
+      this.activeContact = this.contacts[0];
+      this.filteredContacts = this.contacts;
+    }
+  },
+  methods: {
+    // Rende attivo il contatto aggiune la classe active
+    setActiveContact(contact) {
+      this.activeContact = contact;
+    },
+    // Sostituisce il messaggio base con l'ultimo messaggio dell'utente
+    getLastMessage(contact) {
+      if (contact.messages.length > 0) {
+        const lastMessage = contact.messages[contact.messages.length - 1];
+        return lastMessage.message;
+      }
+      return "";
+    },
+    // Funzione per inviare un messaggio
+    sendMessage() {
+      if (this.newMessage) {
+        const message = {
+          message: this.newMessage,
+          date: new Date().toLocaleString(),
+          status: "sent"
+        };
+        this.activeContact.messages.push(message);
+    // Funzione per farsi rispondere dopo 1 secondo
+        setTimeout(() => {
+          const response = {
+            message: "Ok",
+            date: new Date().toLocaleString(),
+            status: "received"
+          };
+          this.activeContact.messages.push(response);
+        }, 1000);
+
+        this.newMessage = "";
+      }
+    },
+    // Funzione per filtrare i contatti
+    filterContacts() {
+      if (this.searchQuery) {
+        this.filteredContacts = this.contacts.filter(contact => {
+          return contact.name.toLowerCase().includes(this.searchQuery.toLowerCase());
+        });
+      } else {
+        this.filteredContacts = this.contacts;
+      }
+    }
   }
 });
 
-app.mount('#app');
+app.mount("#app");

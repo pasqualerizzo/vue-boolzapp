@@ -130,6 +130,32 @@ aside {
     cursor: pointer;
 }
 
+.card-profile {
+    height: 80px;
+    display: flex;
+    cursor: pointer;
+}
+
+.active {
+    background-color: #e9ebeb;
+}
+
+.card-profile img {
+    height: 90%;
+    border-radius: 50%;
+    margin-left: 10px;
+    margin-right: 5px;
+}
+
+.info-contact {
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.info-contact p:last-child {
+    font-size: 14px;
+    color: #bdbdbe;
+}
 
 
 section {
@@ -178,6 +204,33 @@ section {
 .chat-message {
     height: calc(100% - 60px - 60px);
     background-image: url(../img/mine.jpg);
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    overflow-y: auto;
+}
+
+.msg-base {
+}
+
+.msg-base p {
+    padding: 15px;
+    background-color: lightcoral;
+    display: inline-block;
+    border-radius: 8px;
+}
+
+.sent {
+    text-align: end;
+}
+
+.sent p {
+    background-color: #d5f9ba;
+    text-align: end;
+}
+
+.received p {
+    background-color: #ffff;
 }
 
 .type-message {

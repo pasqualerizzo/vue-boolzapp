@@ -20,7 +20,8 @@
     <link rel="stylesheet" href="css/style.css">
     <!-- Vue JS -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-
+    <!-- Axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
 
@@ -56,8 +57,8 @@
                     <div class="search-chat">
                         <form>
                             <!-- Milestone 4 -->
-                            <label for="my-input"><i class="fa-solid fa-magnifying-glass"></i></label>
-                            <input v-model="searchQuery" type="text" @input="filterContacts" placeholder="Cerca o inizia una nuova chat">
+                            <label for="search-input"><i class="fa-solid fa-magnifying-glass"></i></label>
+                            <input v-model="searchQuery" type="text" id="search-input" @input="filterContacts" placeholder="Cerca o inizia una nuova chat">
                             <!-- Fine Milestone 4 -->
                         </form>
                     </div>
@@ -73,42 +74,43 @@
                 </aside>
                 <section>
                     <div class="chat-head">
-                        <div class="container-profile">
-                            <img src="./img/avatar_2.jpg" alt="">
-                            <div class="info-user">
-                                <p>Michele</p><br>
-                                <p>Ultimo accesso oggi alle 12:00</p>
-                            </div>
-                            <div class="cta-chat-btn">
-                                <i class="fa-solid fa-magnifying-glass"></i>
-                                <i class="fa-solid fa-paperclip"></i>
-                                <i class="fa-solid fa-ellipsis-vertical"></i>
-                            </div>
+                      <div class="container-profile">
+                        <img :src="activeContact.avatar" alt="">
+                        <div class="info-user">
+                          <p>{{ activeContact.name }}</p><br>
+                          <p>Ultimo accesso oggi alle 12:00</p>
                         </div>
+                        <div class="cta-chat-btn">
+                          <i class="fa-solid fa-magnifying-glass"></i>
+                          <i class="fa-solid fa-paperclip"></i>
+                          <i class="fa-solid fa-ellipsis-vertical"></i>
+                        </div>
+                      </div>
                     </div>
                     <div class="chat-message">
-                        <!-- Milestone 2 -->
-                        <div v-for="message in activeContact.messages" :key="message.date" class="msg-base" :class="[message.status === 'sent' ? 'sent' : 'received']">
-                          <p>{{ message.message }}</p>
-                        </div>
-                        <!-- Fine Milestone 2 -->
+                      <!-- Milestone 2 -->
+                      <div v-for="message in activeContact.messages" :key="message.date" class="msg-base" :class="[message.status === 'sent' ? 'sent' : 'received']">
+                         <p>{{ message.message }}</p>
+                         <span class="message-date">{{ message.date }}</span>
+                      </div>
+                      <!-- Fine Milestone 2 -->
                     </div>
                     <div class="type-message">
-                        <div class="emoji">
+                      <div class="emoji">
                           <i class="fa-regular fa-face-smile"></i>
-                        </div>
-                        <div class="tiping-message">
+                      </div>
+                      <div class="tiping-message">
                         <!-- Milestone 3 -->
-                          <form @submit.prevent="sendMessage">
-                            <input v-model="newMessage" type="text" id="message-input" name="message-input" placeholder="   Scrivi un messaggio" />
-                          </form>
+                        <form @submit.prevent="sendMessage">
+                          <input v-model="newMessage" type="text" id="message-input" name="message-input" placeholder="   Scrivi un messaggio" />
+                        </form>
                         <!-- Fine Milestone 3 -->
-                        </div>
-                        <div class="vocal-message">
+                      </div>
+                      <div class="vocal-message">
                           <i class="fa-solid fa-microphone"></i>
-                        </div>
+                      </div>
                     </div>
-                </section>
+                  </section>
             </div>
         </div>
     </main>

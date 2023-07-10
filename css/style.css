@@ -219,10 +219,11 @@ section {
 
 .msg-base {
     margin-bottom: 5px;
+    position: relative;
 }
 
 .msg-base p {
-    padding: 15px;
+    padding: 20px;
     background-color: lightcoral;
     display: inline-block;
     border-radius: 8px;
@@ -239,6 +240,22 @@ section {
 
 .received p {
     background-color: #ffff;
+}
+
+.sent .message-date {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    font-size: 10px;
+    color: gray;
+}
+
+.received .message-date {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    font-size: 10px;
+    color: gray;
 }
 
 .type-message {

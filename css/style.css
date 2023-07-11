@@ -220,6 +220,7 @@ section {
 .msg-base {
     margin-bottom: 5px;
     position: relative;
+    
 }
 
 .msg-base p {
@@ -235,11 +236,14 @@ section {
 
 .sent p {
     background-color: #d5f9ba;
-    text-align: end;
+    text-align: start;
+    max-width: 50%;
 }
 
 .received p {
     background-color: #ffff;
+    text-align: start;
+    max-width: 50%;
 }
 
 .sent .message-date {
